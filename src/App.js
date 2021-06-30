@@ -3,10 +3,10 @@ import { useWeb3React } from "@web3-react/core";
 import { injected } from "./helpers/connector";
 import "./App.css";
 import ListMySubs from "./components/ListMySubs";
-import { Button, Layout } from "antd";
+import { Button, Layout, Typography } from "antd";
 
 const { Header, Footer, Sider, Content } = Layout;
-
+const { Text, Link } = Typography;
 function App() {
 	const web3React = useWeb3React();
 	const activateWeb3 = () => {
@@ -31,7 +31,9 @@ function App() {
 	}
 	return (
 		<Layout>
-			<Header>Header</Header>
+			<Header title="Fund approver">
+				<Text type="success">Fund Approver</Text>
+			</Header>
 			<Content>
 				{web3React.active ? (
 					<ListMySubs />
@@ -39,7 +41,12 @@ function App() {
 					<Button onClick={ConnectWallet}>Connect Wallet!</Button>
 				)}
 			</Content>
-			<Footer>Footer</Footer>
+			<Footer>
+				ERC777 Approver ©2021 Created by{" "}
+				<Link href="https://twitter.com/themystery" target="_blank">
+					Prafful Sahu
+				</Link>
+			</Footer>
 		</Layout>
 	);
 }

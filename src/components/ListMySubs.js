@@ -11,9 +11,9 @@ const { Text, Title, Paragraph } = Typography;
 
 const mapping = {
 	"0x745861aed1eee363b4aaa5f1994be40b1e05ff90": "fDAIx",
-	"0x0F1D7C55A2B133E000eA10EeC03c774e0d6796e8": "fUSDCx",
-	"0xdF7B8461a1d9f57f12F88d97FC6131E36d302d81": "fTUSDx",
-	"0xa623b2DD931C5162b7a0B25852f4024Db48bb1A0": "ETHx",
+	"0x0f1d7c55a2b133e000ea10eec03c774e0d6796e8": "fUSDCx",
+	"0xdf7b8461a1d9f57f12f88d97fc6131e36d302d81": "fTUSDx",
+	"0xa623b2dd931c5162b7a0b25852f4024db48bb1a0": "ETHx",
 };
 
 const GET_RECEIVE_ADDRESS = gql`
@@ -31,6 +31,7 @@ const GET_RECEIVE_ADDRESS = gql`
 		}
 	}
 `;
+
 function ListMySubs() {
 	const web3React = useWeb3React();
 	const sf = new SuperfluidSDK.Framework({
@@ -96,16 +97,20 @@ function ListMySubs() {
 				renderItem={(item) => (
 					<List.Item
 						actions={
-							item.approved ? (
+							item.revoked ? (
+								<Tag color="red">Revoked</Tag>
+							) : item.approved ? (
 								<></>
 							) : (
 								[
 									<Button
-										onClick={ApproveThisSubscription(
-											item.token,
-											item.indexId,
-											item.publisher
-										)}
+										onClick={() =>
+											ApproveThisSubscription(
+												item.token,
+												item.indexId,
+												item.publisher
+											)
+										}
 									>
 										Approve
 									</Button>,
