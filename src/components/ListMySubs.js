@@ -118,7 +118,11 @@ function ListMySubs() {
 					>
 						<Skeleton title={false} loading={item.loading} active>
 							<List.Item.Meta
-								title={"Publisher: " + item.publisher}
+								title={
+									item.publisher == "0xd6fb1f82ff2296b55bddffcce80abde7fbc6c22d"
+										? "Publisher: StakeDAO"
+										: "Publisher: " + item.publisher
+								}
 								description={"Token: " + mapping[item.token.toString()]}
 							/>
 							{item.approved ? (
