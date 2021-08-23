@@ -10,26 +10,22 @@ const { Content } = Layout;
 const { Text, Title, Paragraph } = Typography;
 
 const mapping = {
-	"0x745861aed1eee363b4aaa5f1994be40b1e05ff90": "fDAIx",
-	"0x0f1d7c55a2b133e000ea10eec03c774e0d6796e8": "fUSDCx",
-	"0xdf7b8461a1d9f57f12f88d97fc6131e36d302d81": "fTUSDx",
-	"0xa623b2dd931c5162b7a0b25852f4024db48bb1a0": "ETHx",
-	"0x12c294107772b10815307c05989DABD71C21670e": "SDTx",
-	"0x8ef4F0C0753048a39B4Bc4eB3f545Fdae00618B7": "sdam3CRVx",
+	"0x1305f6b6df9dc47159d12eb7ac2804d4a33173c2": "DAIx",
+	"0xcaa7349cea390f89641fe306d93591f87595dc1f": "USDCx",
+	"0x3ad736904e9e65189c3000c7dd2c8ac8bb7cd4e3": "MATICx",
+	"0x27e1e4e6bc79d93032abef01025811b7e4727e85": "ETHx",
+	"0x12c294107772b10815307c05989dabd71c21670e": "SDTx",
+	"0x8ef4f0c0753048a39b4bc4eb3f545fdae00618b7": "sdam3CRVx",
 };
 
 const GET_RECEIVE_ADDRESS = gql`
 	query receiveAddresses($subscriber: Bytes) {
-		subscription2S(where: { subscriber: $subscriber }) {
-			id
+		subscribers(where: { subscriber: $subscriber }) {
 			token
-			subscriber
-			publisher
 			indexId
-			userData
 			approved
-			units
 			revoked
+			publisher
 		}
 	}
 `;
@@ -95,7 +91,7 @@ function ListMySubs() {
 		>
 			<List
 				itemLayout="horizontal"
-				dataSource={data.subscription2S}
+				dataSource={data.subscribers}
 				renderItem={(item) => (
 					<List.Item
 						actions={
