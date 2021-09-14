@@ -4,6 +4,7 @@ import { injected } from "./helpers/connector";
 import "./App.css";
 import ListMySubs from "./components/ListMySubs";
 import { Button, Layout, Typography } from "antd";
+import DowngradeToken from "./components/DowngradeToken";
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Text, Link } = Typography;
@@ -36,7 +37,18 @@ function App() {
 			</Header>
 			<Content>
 				{web3React.active ? (
-					<ListMySubs />
+					<>
+						<ListMySubs />
+						<DowngradeToken
+							token={"0x12c294107772b10815307c05989dabd71c21670e"}
+						/>
+						<DowngradeToken
+							token={"0x8ef4f0c0753048a39b4bc4eb3f545fdae00618b7"}
+						/>
+						<DowngradeToken
+							token={"0x229c5d13452dc302499b5c113768a0db0c9d5c05"}
+						/>
+					</>
 				) : (
 					<Button onClick={ConnectWallet}>Connect Wallet!</Button>
 				)}
